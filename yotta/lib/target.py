@@ -485,10 +485,7 @@ class DerivedTarget(Target):
         # in the future this may be specified in the target description, but
         # for now we only support cmake, so everything is simple:
         build_type = ('Debug', 'RelWithDebInfo', 'Release')[(2 if strip else 1) if release_build else 0]
-        if build_type:
-            cmd = ['cmake', '-D', 'CMAKE_BUILD_TYPE=%s' % build_type, '-G', args.cmake_generator, '.']
-        else:
-            cmd = ['cmake', '-G', args.cmake_generator, '.']
+        cmd = ['cmake', '-D', 'CMAKE_BUILD_TYPE=%s' % build_type, '-G', args.cmake_generator, '.']
         res = self.exec_helper(cmd, builddir)
         if res is not None:
             return res
